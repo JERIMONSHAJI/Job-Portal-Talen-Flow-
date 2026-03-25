@@ -22,4 +22,5 @@ urlpatterns = [
     path('applicants/<int:jid>/',viewapplicantsfn),
     path('update_status/<int:aid>/<str:status>/',update_status_fn),
     path('profile/<int:pk>/',profile_view),
+    path('contactus/',contactusfn)
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

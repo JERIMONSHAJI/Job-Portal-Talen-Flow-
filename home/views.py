@@ -303,3 +303,6 @@ def profile_view(request, pk):
     }
     
     return render(request, 'visitprofile.html', context)
+
+def contactusfn(request) :
+    return render(request, 'contactus.html')
