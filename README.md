@@ -17,7 +17,7 @@ The application implements a strict 3-tier permission model to ensure data secur
 
 | 🏠 Homepage | 🔍 Find Jobs |
 | :---: | :---: |
-| ![Home](screenshots/HomeTalentFlow.jpg) | ![Find Job](screenshots/FindJobTalentFlow.png) |
+| ![Home](screenshots/HomeTalentFlow.png) | ![Find Job](screenshots/FindJobTalentFlow.png) |
 
 | 👤 User Profile | 📊 Employer Dashboard |
 | :---: | :---: |
