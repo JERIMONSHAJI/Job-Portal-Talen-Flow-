@@ -1,5 +1,8 @@
 # 🚀 Talent Flow: Advanced 3-Tier Job Portal
 
+[![Deployment Status](https://img.shields.io/badge/Deployment-Live-green)](https://jobportaltalentflow.pythonanywhere.com/)
+**Live Demo:** [jobportaltalentflow.pythonanywhere.com](https://jobportaltalentflow.pythonanywhere.com/)
+
 **Talent Flow** is a high-performance recruitment ecosystem developed using **Python** and **Django**. This project bridges the gap between hiring managers and candidates through an intuitive, data-driven workflow, serving as a comprehensive showcase of full-stack web development.
 
 ---
