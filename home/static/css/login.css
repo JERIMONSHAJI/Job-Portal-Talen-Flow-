@@ -1,0 +1,43 @@
+.fmflex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+}
+.logborder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(250, 246, 246);
+    width: 800px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.formborder {
+    width: 300px;
+}
+.logimg {
+    width: 300px;
+}
+.form-label {
+    margin-top: 10px;
+}
+.btn-primary {
+    background-color: rgba(99, 0, 179, 1) !important;
+}
+
+.ermsg {
+    border: 1px black solid;
+    width: 80%;
+    background: rgb(248, 157, 157);
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    border-radius: 10px;
+
+}

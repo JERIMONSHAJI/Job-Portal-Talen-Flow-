@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/findjob.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="fmain">
+        <div class="txtc">
+            <h1 class="fw-bold">Job Search</h1>
+            <p class="fw-bold">Search for your desired job matching your skills</p>
+        </div>
+        
+        <div class="container mt-2">
+            <form action="" method="GET" class="input-group shadow-sm border rounded-pill overflow-hidden bg-white p-1">
+                <input type="text" name="q" value="{{ query|default:'' }}" class="form-control border-0 px-4 py-3 shadow-none" placeholder="Search for jobs, location or companies...">
+                <button class="btn btn-primary rounded-pill px-5 fw-bold" type="submit" style="background-color: #6f00c5; border: none;">
+                    Search
+                </button>
+            </form>
+        </div>
+
+        <div class="jfil">
+            <div class="filter">
+                <form action="" method="GET">
+                    {% if query %}<input type="hidden" name="q" value="{{ query }}">{% endif %}
+
+                    <div class="sal fw-bold">
+                        <label for="Sale"><h5 class="fw-bold">Minimum Salary</h5></label>
+                        <input type="number" name="min_salary" id="Sale" class="sale" value="{{ min_salary|default:'' }}">
+                    </div>
+                    <hr>
+
+                    <div class="jtype fw-bold">
+                        <h5 class="fw-bold">Job Type</h5>
+                        <hr>
+                        <div class="form-check fjt">    
+                            <input class="form-check-input" type="checkbox" name="job_type" value="Full Time" id="ft" {% if 'Full Time' in selected_types %}checked{% endif %}>
+                            <label class="form-check-label" for="ft">Full Time</label>
+                        </div>
+                        <div class="form-check fjt">
+                            <input class="form-check-input" type="checkbox" name="job_type" value="Part Time" id="pt" {% if 'Part Time' in selected_types %}checked{% endif %}>
+                            <label class="form-check-label" for="pt">Part Time</label>
+                        </div>
+                        <div class="form-check fjt">
+                            <input class="form-check-input" type="checkbox" name="job_type" value="Internship" id="intern" {% if 'Internship' in selected_types %}checked{% endif %}>
+                            <label class="form-check-label" for="intern">Internship</label>
+                        </div>
+                        <div class="form-check fjt">
+                            <input class="form-check-input" type="checkbox" name="job_type" value="Contract" id="contract" {% if 'Contract' in selected_types %}checked{% endif %}>
+                            <label class="form-check-label" for="contract">Contract</label>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="jtype fw-bold">
+                        <h5 class="fw-bold">Work Mode</h5>
+                        <hr>
+                        <div class="form-check fjt">    
+                            <input class="form-check-input" type="checkbox" name="work_mode" value="On-site" id="onsite" {% if 'On-site' in selected_modes %}checked{% endif %}>
+                            <label class="form-check-label" for="onsite">On-site</label>
+                        </div>
+                        <div class="form-check fjt">
+                            <input class="form-check-input" type="checkbox" name="work_mode" value="Remote" id="remote" {% if 'Remote' in selected_modes %}checked{% endif %}>
+                            <label class="form-check-label" for="remote">Remote</label>
+                        </div>
+                        <div class="form-check fjt">
+                            <input class="form-check-input" type="checkbox" name="work_mode" value="Hybrid" id="hybrid" {% if 'Hybrid' in selected_modes %}checked{% endif %}>
+                            <label class="form-check-label" for="hybrid">Hybrid</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn fbtn">Apply Filters</button>
+                    <a href="/findjob/" class="btn btn-sm btn-link mt-2 text-decoration-none" style="color: #6f00c5;">Reset All</a>
+                </form>
+            </div>
+
+            <div class="jobs">
+                {% for i in jobs %}
+                    <div class="cards">
+                        <h5>{{ i.name }}</h5>
+                        <h6>{{ i.workmd.name }} | {{ i.jobtype.name }}</h6>
+                        <h6>Salary : {{ i.salary }}</h6>
+                        <div style="display: flex;">
+                            <img class="cmimg" src="/media/{{ i.company.image }}" alt="">
+                            <div class="cname">
+                                <h5>{{ i.company.us.username }}</h5>
+                            </div>
+                        </div>
+                        <div class="buttong">
+                            <a class="btn btcl1 fw-bold" href="/view/{{ i.id }}/" role="button">View Details</a>
+                            {% if not request.user.companyprofile %}
+                                <a class="btn btcl2 fw-bold" href="/applay/{{ i.id }}/" role="button">Apply Now</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="empty-state text-center p-5">
+                        <h4 class="text-muted">No jobs found matching your criteria.</h4>
+                        <p>Try adjusting your search or filters.</p>
+                    </div>
+                {% endfor %}
+                <div class="pagination-container w-100 d-flex justify-content-center mt-4">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            {% if jobs.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link shadow-none fw-bold" href="?page=1{% if query %}&q={{ query }}{% endif %}{% if min_salary %}&min_salary={{ min_salary }}{% endif %}{% for type in selected_types %}&job_type={{ type }}{% endfor %}{% for mode in selected_modes %}&work_mode={{ mode }}{% endfor %}">&laquo; First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link shadow-none fw-bold" href="?page={{ jobs.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if min_salary %}&min_salary={{ min_salary }}{% endif %}{% for type in selected_types %}&job_type={{ type }}{% endfor %}{% for mode in selected_modes %}&work_mode={{ mode }}{% endfor %}">Previous</a>
+                                </li>
+                            {% endif %}
+
+                            <li class="page-item disabled">
+                                <span class="page-link" style="background-color: #f4eef7; color: #6f00c5; border-color: #6f00c5;">
+                                    Page {{ jobs.number }} of {{ jobs.paginator.num_pages }}
+                                </span>
+                            </li>
+
+                            {% if jobs.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link shadow-none fw-bold" href="?page={{ jobs.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if min_salary %}&min_salary={{ min_salary }}{% endif %}{% for type in selected_types %}&job_type={{ type }}{% endfor %}{% for mode in selected_modes %}&work_mode={{ mode }}{% endfor %}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link shadow-none fw-bold" href="?page={{ jobs.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}{% if min_salary %}&min_salary={{ min_salary }}{% endif %}{% for type in selected_types %}&job_type={{ type }}{% endfor %}{% for mode in selected_modes %}&work_mode={{ mode }}{% endfor %}">Last &raquo;</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

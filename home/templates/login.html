@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css\login.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="fmflex">
+        <h3 class="fw-bold">Login to your account</h3>
+        <div class="logborder">
+            <div class="logform">
+                <form action="/login/" class="formborder" method="post">
+                    {% csrf_token %}
+                    {% if er %}
+                        <p class="ermsg fw-bold text-center">{{er}}</p>
+                    {% endif %}
+                    <label for="username" class="form-label fw-bold">Username</label>
+                    <input type="text" id="username" name="un" class="form-control" placeholder="Username">
+                    <label for="password" class="form-label fw-bold">Password</label>
+                    <input type="password" id="password" name="ps1" class="form-control" placeholder="Password">
+                    <button type="submit" class="btn btn-primary w-100 mt-3 fw-bold">Login</button>
+                </form>
+                <p class="text-muted small text-center">
+                    Don't have an account? <a href="/register/" class="text-purple fw-bold">Register</a>
+                </p>
+            </div>
+            <div class="logimage ms-auto">
+                <img src="{% static 'images/loginimg.png' %}" alt="" class="logimg">
+            </div>
+        </div>
+    </div>
+{% endblock %}

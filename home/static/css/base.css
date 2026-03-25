@@ -1,0 +1,21 @@
+.br {
+    border: 1px solid rgba(99, 0, 179, 1);
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+    color: rgba(99, 0, 179, 1);
+}
+.br1 {
+    border: 1px solid rgba(99, 0, 179, 1);
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: rgba(99, 0, 179, 1);
+    color: rgba(255, 255, 255, 1);
+}
+.hd {
+    color: rgba(99, 0, 179, 1);
+}
+.logo{
+    width: 40px;
+}

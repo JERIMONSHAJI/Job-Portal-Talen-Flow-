@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/view.css' %}">
+{% endblock style %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="job-header">
+        <h1 class="job-title">{{ jobs.name }}</h1>
+        <div class="company-name">
+            {{ jobs.company.name|default:"Company Name" }}
+        </div>
+
+        <div class="job-meta">
+            {% if jobs.workmd %}
+            <div class="meta-item">Work Mode: <strong>{{ jobs.workmd }}</strong></div>
+            {% endif %}
+            {% if jobs.jobtype %}
+            <div class="meta-item">Type: <strong>{{ jobs.jobtype }}</strong></div>
+            {% endif %}
+            {% if jobs.experience %}
+            <div class="meta-item">Experience: <strong>{{ jobs.experience }}</strong></div>
+            {% endif %}
+            <div class="meta-item">Salary: <strong>{{ jobs.salary }}</strong></div>
+            <div class="meta-item">Posted: <strong>{{ jobs.posted_at|date:"d M Y" }}</strong></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+
+        <h2 class="section-heading">Job Description</h2>
+        <div class="description">
+            {{ jobs.description|linebreaks }}
+        </div>
+
+        {% if jobs.required_skills.exists %}
+        <h2 class="section-heading">Required Skills</h2>
+        <div class="skills-container">
+            {% for skill in jobs.required_skills.all %}
+            <span class="skill-tag">{{ skill }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+    <div class="apply-bar">
+        {% if not request.user.companyprofile %}
+            <a href="/applay/{{ jobs.id }}/" class="btn-apply btn fw-bold">Apply Now</a>
+        {% endif %}
+        <a href="/findjob/" class="btn-back btn fw-bold">Back to Jobs</a>
+    </div>
+
+</div>
+
+{% endblock content %}

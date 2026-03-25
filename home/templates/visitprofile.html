@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock style %}
+
+{% block content %}
+
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="cover-area"></div>
+
+        <div class="profile-main-info">
+            
+            {% if user_type == 'seeker' and profile %}
+                {% if profile.image %}
+                    <img src="{{ profile.image.url }}" alt="{{ profile.us.username }}" class="profile-avatar">
+                {% else %}
+                    <img src="{% static 'images/default-user.jpg' %}" alt="Default" class="profile-avatar">
+                {% endif %}
+
+                <h1 class="profile-name">{{ profile.us.username|default:"User" }}</h1>
+                <div class="profile-role">Job Seeker</div>
+
+                <div class="profile-meta">
+                    {% if profile.email %}
+                    <div class="meta-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <span>{{ profile.email }}</span>
+                    </div>
+                    {% endif %}
+
+                    {% if profile.phone %}
+                    <div class="meta-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        <span>{{ profile.phone }}</span>
+                    </div>
+                    {% endif %}
+
+                    {% if profile.location %}
+                    <div class="meta-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>{{ profile.location }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if profile.about %}
+                    <h3 class="section-title">About Me</h3>
+                    <p class="about-text">{{ profile.about }}</p>
+                {% endif %}
+
+                <h3 class="section-title">Skills</h3>
+                <div class="skills-container">
+                    {% if profile.user_skills.exists %}
+                        {% for skill in profile.user_skills.all %}
+                            <span class="skill-tag">{{ skill.name }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <div class="no-data">No skills added yet</div>
+                    {% endif %}
+                </div>
+
+            {% elif user_type == 'company' and profile %}
+                {% if profile.image %}
+                    <img src="{{ profile.image.url }}" alt="{{ profile.us.username }}" class="profile-avatar">
+                {% else %}
+                    <img src="{% static 'images/default-company.jpg' %}" alt="Company" class="profile-avatar">
+                {% endif %}
+
+                <h1 class="profile-name">{{ profile.us.username|default:"Company" }}</h1>
+                <div class="profile-role">Employer</div>
+
+                <div class="profile-meta">
+                    {% if profile.location %}
+                    <div class="meta-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>{{ profile.location }}</span>
+                    </div>
+                    {% endif %}
+
+                    <div class="meta-item">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <span>{{ profile.email }}</span>
+                    </div>
+                </div>
+
+                {% if profile.tagline %}
+                    <h3 class="section-title">Tagline</h3>
+                    <p class="about-text" style="font-style: italic; color: #6c19cf;">
+                        "{{ profile.tagline }}"
+                    </p>
+                {% endif %}
+
+                {% if profile.about %}
+                    <h3 class="section-title">About Company</h3>
+                    <p class="about-text">{{ profile.about }}</p>
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,130 @@
+.txtc{
+    margin-top: 50px;
+    margin-left: 130px;
+}
+
+.filter {
+    margin-left: 100px;
+    margin-top: 30px;
+    width: 300px;
+    padding: 40px;
+    height: 600px;
+    border-radius: 20px;
+    background-color: rgb(244, 238, 247);
+}
+
+.jfil {
+    display: flex;
+}
+.jobs{
+    flex-wrap: wrap;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.cards {
+    padding: 20px;
+    width: 300px;
+    border-radius: 20px;
+    height: 250px;
+    background-color: rgba(248, 242, 252, 1);
+}
+
+.cmimg {
+    width: 60px;
+}
+
+.cname {
+    margin-top: 15px;
+    margin-left: 30px;
+}
+
+.buttong {
+    margin-top: 20px;
+}
+
+.btcl1{
+    border: 1px rgba(99, 0, 179, 1) solid;
+    width: 125px;
+    background-color: rgba(248, 242, 252, 1);
+}
+
+.btcl2{
+    border: 1px rgba(99, 0, 179, 1) solid;
+    width: 125px;
+    background-color: rgba(99, 0, 179, 1);
+    color: white;
+}
+
+.btcl1:hover{
+    border: 1px rgba(99, 0, 179, 1) solid;
+    width: 125px;
+    background-color: rgba(99, 0, 179, 1);
+    color: white;
+}
+
+.btcl2:hover{
+    border: 1px rgba(99, 0, 179, 1) solid;
+    width: 125px;
+    background-color: rgba(248, 242, 252, 1);
+}
+
+.fjt {
+    margin-left: 10px;
+}
+
+.sale {
+    border: 1px solid rgba(99, 0, 179, 1);
+    border-radius: 20px;
+    width: 150px;
+}
+
+.fbtn{
+    margin-top: 20px;
+    border: 1px rgba(99, 0, 179, 1) solid;
+    width: 125px;
+    background-color: rgba(99, 0, 179, 1);
+    color: white;
+}
+.alert-popup {
+    padding: 15px 25px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-align: center;
+    animation: slideDown 0.5s ease-out;
+}
+.alert-popup.success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #34d399;
+}
+.alert-popup.warning {
+    background-color: #ffedd5;
+    color: #9a3412;
+    border: 1px solid #fb923c;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.pagination-container {
+    flex-basis: 100%;
+    margin-bottom: 50px;
+}
+
+.page-link {
+    color: #6f00c5 !important;
+    border-color: #6f00c5 !important;
+}
+
+.page-link:hover {
+    background-color: #6f00c5 !important;
+    color: white !important;
+}

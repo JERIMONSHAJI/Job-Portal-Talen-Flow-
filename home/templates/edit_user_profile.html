@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/edituserprofile.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="form-card">
+        <div class="form-header">
+            <h2>Edit Profile</h2>
+            <p>Update your details to stay relevant to recruiters</p>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="form-group {% if field.name == 'add_new_skills' %}custom-skills-area{% endif %}">
+                    <label>{{ field.label }}</label>
+                    
+                    {% if field.name == 'image' %}
+                        <div class="image-upload-wrapper">
+                            {% if field.value %}
+                                <div class="current-path">Currently: {{ field.value }}</div>
+                            {% endif %}
+                            
+                            <label class="custom-upload-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                Choose Profile Photo
+                                <input type="file" name="{{ field.name }}" id="id_image" class="hidden-input" accept="image/*">
+                            </label>
+                            
+                            <div id="file-name" class="file-name-display">No new file selected</div>
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+
+                    {% if field.help_text and field.name != 'image' %}
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">{{ field.help_text }}</div>
+                    {% endif %}
+
+                    {% if field.errors %}
+                        <ul class="error-list">
+                            {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="btn-row">
+                <button type="submit" class="save-btn">Update Profile</button>
+                <a href="/profile/" class="cancel-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('id_image').addEventListener('change', function(e) {
+        const fileName = e.target.files[0] ? e.target.files[0].name : "No new file selected";
+        document.getElementById('file-name').textContent = fileName;
+    });
+</script>
+{% endblock content %}

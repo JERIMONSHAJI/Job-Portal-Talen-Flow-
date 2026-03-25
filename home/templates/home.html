@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css\home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="rect">
+        <div class="hfirst">
+            <h3 class="fw-bold">Find a job that aligns with your interests and skills</h3>
+            <div class="container mt-5">
+                <form action="/findjob/" method="GET" class="input-group shadow-sm border rounded-pill overflow-hidden bg-white p-1">
+                    <input type="text" name="q" class="form-control border-0 px-4 py-3 shadow-none" placeholder="Search for jobs, location or companies...">
+                    
+                    <button class="btn btn-primary rounded-pill px-5 fw-bold" type="submit" style="background-color: #6f00c5; border: none;">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="logimage ms-auto">
+            <img src="{% static 'images/home.png' %}" alt="" class="hmimg">
+        </div>
+    </div>
+        <div class="jobs">
+            {% for i in jobs %}
+                <div class="cards">
+                    <h5>{{i.name}}</h5>
+                    <h6>{{i.workmd}}</h6>
+                    <h6>Salary : {{i.salary}}</h6>
+                    <div style="display: flex;">
+                        <img class="cmimg" src="/media/{{ i.company.image }}" alt="">
+                        <div class="cname">
+                            <h5>{{i.company.us.username}}</h5>
+                        </div>
+                    </div>
+                    <div class="buttong">
+                        <a class="btn btcl1 fw-bold" href="/view/{{ i.id }}/" role="button">View Details</a>
+                        
+                        {% if not request.user.companyprofile %}
+                            <a class="btn btcl2 fw-bold" href="/applay/{{ i.id }}/" role="button">Apply Now</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

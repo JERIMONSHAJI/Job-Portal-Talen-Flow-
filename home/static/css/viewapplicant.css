@@ -1,0 +1,100 @@
+:root {
+    --primary: #7c3aed;
+    --primary-soft: #f3e8ff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+}
+
+body {
+    background: linear-gradient(135deg, #f3e8ff 0%, #ffffff 100%);
+    min-height: 100vh;
+}
+
+.applicants-wrapper {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.page-header {
+    margin-bottom: 40px;
+    border-bottom: 1.5px solid var(--primary-soft);
+    padding-bottom: 20px;
+}
+
+.applicant-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-soft);
+}
+
+.user-details h4 { margin: 0; font-weight: 700; color: var(--text-main); }
+.user-details p { margin: 2px 0 0; font-size: 0.85rem; color: var(--text-muted); }
+.status-management {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.status-pill {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 5px 15px;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+.status-Pending { background: #fef3c7; color: #92400e; }
+.status-Accepted { background: #d1fae5; color: #065f46; }
+.status-Rejected { background: #fee2e2; color: #b91c1c; }
+
+.btn-group-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-dash {
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-profile { background: var(--primary); color: white; }
+.btn-profile:hover { background: #6d28d9; color: white; }
+
+.btn-update {
+    background: white;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.btn-update:hover { background: var(--primary-soft); }
+
+.dropdown-menu { border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; }
+.dropdown-item { font-size: 0.85rem; padding: 10px 20px; font-weight: 600; }

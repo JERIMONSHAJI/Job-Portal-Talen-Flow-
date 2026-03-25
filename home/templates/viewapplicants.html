@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/viewapplicant.css' %}">
+{% endblock style %}
+
+{% block content %}
+<div class="applicants-wrapper">
+    <div class="page-header">
+        <h2>Applicants for <span style="color: var(--primary);">{{ target_job.name }}</span></h2>
+    </div>
+
+    <div class="applicant-list">
+        {% for app in applicants %}
+        <div class="applicant-card">
+            <div class="user-info">
+                {% if app.applicant.userprofile.image %}
+                    <img src="{{ app.applicant.userprofile.image.url }}" class="user-avatar">
+                {% else %}
+                    <img src="{% static 'images/default_user.png' %}" class="user-avatar">
+                {% endif %}
+                <div class="user-details">
+                    <h4>{{ app.applicant.username }}</h4>
+                    <p>Applied: {{ app.applied_at|date:"M d, Y" }}</p>
+                    <p>📧 {{ app.applicant.email }}</p>
+                </div>
+            </div>
+
+            <div class="status-management">
+                <span class="status-pill status-{{ app.status }}">{{ app.status }}</span>
+                
+                <div class="btn-group-actions">
+                    <a href="/profile/{{ app.applicant.id }}/" class="btn-dash btn-profile">Profile</a>
+                    
+                    <div class="dropdown">
+                        <button class="btn-dash btn-update dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            Status
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item text-warning" href="/update_status/{{ app.id }}/Pending/">Pending</a></li>
+                            <li><a class="dropdown-item text-success" href="/update_status/{{ app.id }}/Accepted/">Accept</a></li>
+                            <li><a class="dropdown-item text-danger" href="/update_status/{{ app.id }}/Rejected/">Reject</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">No applications found for this job.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

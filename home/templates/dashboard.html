@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header-wrapper">
+        <div class="dashboard-header">
+            {% if user_type == 'company' %}
+                <h1>Company <strong>Dashboard</strong></h1>
+                <p>Managing listings for <strong>{{ request.user.username }}</strong></p>
+            {% else %}
+                <h1>My <strong>Applications</strong></h1>
+                <p>Tracking status for <strong>{{ request.user.username }}</strong></p>
+            {% endif %}
+        </div>
+        
+        {% if user_type == 'company' %}
+        <div class="header-actions">
+            <a href="/addjob/" class="btn-dash btn-applicants">Post Job Advert</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="job-grid">
+        {% for j in jobs %}
+        <div class="job-card">
+            <div>
+                <div class="job-title">
+                    {% if user_type == 'company' %}
+                        {{ j.name }}
+                    {% else %}
+                        {{ j.applied_job.name }}
+                    {% endif %}
+                </div>
+                
+                <div class="job-info">
+                    <div>
+                        📍 {% if user_type == 'company' %}{{ j.company.location }}{% else %}{{ j.applied_job.company.location }}{% endif %}
+                    </div>
+                    <div class="job-salary">
+                        {% if user_type == 'company' %}{{ j.salary }}{% else %}{{ j.applied_job.salary }}{% endif %} LPA
+                    </div>
+                </div>
+            </div>
+            
+            <div class="job-footer">
+                <span class="status-label">
+                    {% if user_type == 'company' %}
+                        Posted: <strong>{{ j.posted_at|date:"M d" }}</strong>
+                    {% else %}
+                        STATUS: <span class="status-value">{{ j.status }}</span>
+                    {% endif %}
+                </span>
+
+                <div class="action-buttons">
+                    {% if user_type == 'company' %}
+                        <div class="company-actions">
+                            <a href="/applicants/{{ j.id }}/" class="btn-dash btn-applicants">Applicants</a>
+                            <a href="/edit/{{ j.id }}/" class="btn-dash btn-edit">Edit</a>
+                            <a href="/delete/{{ j.id }}/" class="btn-dash btn-delete" onclick="return confirm('Delete this job permanently?')">Delete</a>
+                        </div>
+                        <div class="action-divider"></div>
+                    {% endif %}
+                    {% if user_type == 'company' %}
+                        <a href="/view/{{ j.id }}/" class="btn-dash btn-view">View Details</a>
+                    {% else %}
+                        <a href="/view/{{ j.applied_job.id }}/" class="btn-dash btn-view">View Details</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <img src="{% static 'images/empty.png' %}" alt="" style="width: 100px; opacity: 0.2;">
+            <h3>No records found.</h3>
+            <p>Time to find some new opportunities!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

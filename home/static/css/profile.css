@@ -1,0 +1,173 @@
+:root {
+    --primary: #7c3aed;
+    --primary-dark: #6d28d9;
+    --light-bg: #f8f5ff;
+    --gray: #4b5563;
+    --dark: #1f2937;
+}
+
+body {
+    background: linear-gradient(135deg, #f3e8ff 0%, #e0d5ff 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--dark);
+}
+
+.profile-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.profile-header {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(109, 40, 217, 0.12);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.cover-area {
+    height: 120px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+    position: relative;
+}
+
+.profile-main-info {
+    padding: 0 40px 40px;
+    position: relative;
+}
+
+.profile-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 6px solid white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    object-fit: cover;
+    background-color: #e5e7eb;
+    position: absolute;
+    top: -150px;
+    left: 40px;
+}
+
+.profile-name {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin: 70px 0 8px;
+    color: var(--dark);
+}
+
+.profile-role {
+    font-size: 1.15rem;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.profile-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 20px 0;
+    color: var(--gray);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 32px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+}
+
+.about-text {
+    line-height: 1.7;
+    color: #374151;
+    max-width: 780px;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.skill-tag {
+    background: rgba(124, 58, 237, 0.12);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+.no-data {
+    color: #9ca3af;
+    font-style: italic;
+    padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .profile-main-info {
+        padding: 0 25px 35px;
+    }
+    
+    .profile-avatar {
+        width: 130px;
+        height: 130px;
+        top: -65px;
+        left: 25px;
+    }
+    
+    .profile-name {
+        margin-top: 60px;
+        font-size: 1.8rem;
+    }
+}
+
+.edit-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    background-color: white;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.edit-btn:hover {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .edit-btn {
+        top: 20px;
+        right: 25px;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+}

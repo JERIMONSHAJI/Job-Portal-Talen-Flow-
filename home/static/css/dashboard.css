@@ -1,0 +1,229 @@
+:root {
+    --primary-purple: #6c19cf;
+    --light-purple: #f3e8ff;
+    --text-dark: #1a1a1a;
+    --danger-red: #ef4444;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.dashboard-container {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.dashboard-header {
+    margin-bottom: 40px;
+    border-left: 6px solid var(--primary-purple);
+    padding-left: 20px;
+}
+
+.dashboard-header h1 {
+    font-size: 2.4rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.dashboard-header strong {
+    color: var(--primary-purple);
+}
+
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.job-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid #eef0f2;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(108, 25, 207, 0.1);
+}
+
+.job-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.job-info {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.job-salary {
+    margin-top: 10px;
+    display: inline-block;
+    background: var(--light-purple);
+    color: var(--primary-purple);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* --- Optimized Footer & Buttons --- */
+
+.job-footer {
+    margin-top: auto; /* Pushes footer to bottom of card */
+    padding-top: 18px;
+    border-top: 1.5px solid #f3e8ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping if content is too wide */
+    gap: 12px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px; /* Slightly tighter gap */
+    flex-wrap: wrap; /* Keeps buttons inside the card boundaries */
+    justify-content: flex-end;
+}
+
+.btn-dash {
+    text-decoration: none;
+    /* Reduced padding and font-size to prevent overflow */
+    padding: 8px 16px; 
+    border-radius: 50px; 
+    font-weight: 700;
+    font-size: 0.75rem; /* Smaller font for better fit */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Prevents text inside button from breaking */
+}
+
+/* Maintain Talent Flow Colors */
+.btn-view, .btn-applicants {
+    background-color: #6f00c5;
+    color: white;
+    box-shadow: 0 4px 10px rgba(111, 0, 197, 0.15);
+}
+
+.btn-edit {
+    background-color: transparent;
+    color: #6f00c5;
+    border: 1.2px solid #6f00c5;
+}
+
+.btn-delete {
+    background-color: #fff1f2;
+    color: #be123c;
+}
+
+/* Ensure the card itself has enough room */
+.job-card {
+    min-height: 280px; /* Ensures consistent card height */
+    padding: 20px;
+}
+
+/* Mobile Tweak: Stack buttons if card is very narrow */
+@media (max-width: 400px) {
+    .job-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .action-buttons {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+/* Container for all actions */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.company-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start; /* Keeps management buttons to the left */
+    margin-bottom: 12px;
+}
+
+/* The Full-Width Line */
+.action-divider {
+    height: 1px;
+    background-color: #f3e8ff;
+    /* Negative margin pulls the line to the edges of the card */
+    margin-left: -24px; 
+    margin-right: -24px;
+    margin-bottom: 12px;
+    width: calc(100% + 48px);
+}
+
+/* Pushes View Details to the right */
+.view-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.btn-view {
+    /* Optional: slightly more prominent for the primary action */
+    padding: 8px 20px;
+}
+
+/* Ensure the card padding matches the negative margins above (24px) */
+.job-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Header Button Alignment --- */
+
+.dashboard-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Aligns button with the bottom of the header text */
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dashboard-header {
+    margin-bottom: 0; /* Reset margin as the wrapper now handles spacing */
+}
+
+.header-actions .btn-dash {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 15px -3px rgba(108, 25, 207, 0.2);
+}
+
+/* Mobile fix for header button */
+@media (max-width: 600px) {
+    .dashboard-header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .header-actions {
+        width: 100%;
+    }
+    
+    .header-actions .btn-dash {
+        width: 100%;
+    }
+}

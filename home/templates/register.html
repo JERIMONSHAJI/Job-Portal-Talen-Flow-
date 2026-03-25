@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="fmflex">
+        <h3>Create your account</h3>
+        <div class="logborder d-flex">
+            <div class="logform">
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <form method="POST" action="/register/" class="formborder">
+                    {% csrf_token %}
+                    
+                    <div class="d-flex justify-content-center gap-3 mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="userType" id="roleEmployee" value="employee" checked>
+                            <label class="form-check-label" for="roleEmployee">Seeker</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="userType" id="roleCompany" value="company">
+                            <label class="form-check-label" for="roleCompany">Company</label>
+                        </div>
+                    </div>
+
+                    <div id="employee-extra">
+                        <label for="username" class="form-label fw-bold">Username</label>
+                        <input type="text" name="username" id="username" class="form-control mb-2" placeholder="Username">
+                        
+                        <label class="form-label fw-bold">Full Name</label>
+                        <input type="text" name="full_name" class="form-control mb-2" placeholder="John Doe">
+                    </div>
+
+                    <div id="company-extra" style="display: none;">
+                        <label class="form-label fw-bold">Company Name</label>
+                        <input type="text" name="company_name" class="form-control mb-2" placeholder="G-tech">
+                        
+                        <label class="form-label fw-bold">Location</label>
+                        <input type="text" name="location" class="form-control mb-2" placeholder="Bangalore">
+                    </div>
+
+                    <label for="password" class="form-label fw-bold">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+
+                    <label for="cpassword" class="form-label fw-bold">Confirm Password</label>
+                    <input type="password" name="cpassword" id="cpassword" class="form-control" placeholder="Confirm Password">
+                    
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const employeeRadio = document.getElementById('roleEmployee');
+    const companyRadio = document.getElementById('roleCompany');
+    const employeeDiv = document.getElementById('employee-extra');
+    const companyDiv = document.getElementById('company-extra');
+
+    function updateForm() {
+        if (companyRadio.checked) {
+            companyDiv.style.display = 'block';
+            employeeDiv.style.display = 'none';
+        } else {
+            companyDiv.style.display = 'none';
+            employeeDiv.style.display = 'block';
+        }
+    }
+
+    employeeRadio.addEventListener('change', updateForm);
+    companyRadio.addEventListener('change', updateForm);
+</script>
+{% endblock %}
