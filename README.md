@@ -17,11 +17,11 @@ The application implements a strict 3-tier permission model to ensure data secur
 
 | 🏠 Homepage | 🔍 Find Jobs |
 | :---: | :---: |
-| ![Home](screenshots/HomeTalentFlow.jpg) | ![Find Job](screenshots/Find%20jobTalentFlow.png) |
+| ![Home](screenshots/HomeTalentFlow.jpg) | ![Find Job](screenshots/FindJobTalentFlow.png) |
 
 | 👤 User Profile | 📊 Employer Dashboard |
 | :---: | :---: |
-| ![Profile](screenshots/Profile%20talent%20flow.png) | ![Dashboard](screenshots/DashboardTalentFlow.png) |
+| ![Profile](screenshots/ProfileTalentFlow.png) | ![Dashboard](screenshots/DashboardTalentFlow.png) |
 
 | 🔑 Login Page | 📝 Registration |
 | :---: | :---: |
