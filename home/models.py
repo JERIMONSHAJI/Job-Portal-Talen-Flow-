@@ -45,7 +45,7 @@ class workmode(models.Model):
 class job(models.Model):
     name=models.TextField(max_length=20)
     company=models.ForeignKey(companyprofile,on_delete=models.CASCADE,default=1)
-    description=models.TextField(max_length=200)
+    description=models.TextField(max_length=500)
     salary=models.TextField(max_length=20)
     jobtype=models.ForeignKey(jobtypes,on_delete=models.CASCADE, null=True, blank=True)
     workmd=models.ForeignKey(workmode,on_delete=models.CASCADE,null=True,blank=True)

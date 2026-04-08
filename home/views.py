@@ -45,8 +45,7 @@ def registerfn(request):
             username = request.POST.get('username')
             full_name = request.POST.get('full_name')
             if User.objects.filter(username=username).exists():
-                messages.error(request, "Username already taken")
-                return render(request, 'register.html') 
+                return render(request, 'register.html',{'er':'Username is already taken'}) 
             
             user = User.objects.create_user(username=username, password=password)
             user.first_name = full_name
@@ -58,8 +57,7 @@ def registerfn(request):
             location = request.POST.get('location')
             username = company_name.replace(" ", "_").lower()
             if User.objects.filter(username=username).exists():
-                messages.error(request, "Username already taken")
-                return render(request, 'register.html') 
+                return render(request, 'register.html',{'er':'Username is already taken'}) 
 
             user = User.objects.create_user(username=username, password=password)
             companyprofile.objects.create(us=user, location=location, email=f"info@{username}.com")
@@ -84,7 +82,8 @@ def findjobfn(request):
         randjobs = job.objects.filter(
             Q(name__icontains=query) | 
             Q(company__us__username__icontains=query) | 
-            Q(description__icontains=query)
+            Q(description__icontains=query) |
+            Q(company__location__icontains=query)
         ).distinct()
     else:
         randjobs = job.objects.all().order_by('-posted_at')

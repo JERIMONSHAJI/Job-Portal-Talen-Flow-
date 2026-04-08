@@ -85,3 +85,7 @@
     width: 125px;
     background-color: rgba(248, 242, 252, 1);
 }
+
+.btnv {
+    background-color: rgba(99, 0, 179, 1) !important;
+}

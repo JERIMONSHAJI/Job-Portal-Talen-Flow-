@@ -38,6 +38,16 @@ body {
     position: relative;
 }
 
+.profile-actions {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+}
+
 .profile-avatar {
     width: 160px;
     height: 160px;
@@ -119,6 +129,29 @@ body {
     padding: 20px 0;
 }
 
+.edit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 20px;
+    background-color: white;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+    transform: translateY(-1px);
+}
+
 @media (max-width: 768px) {
     .profile-main-info {
         padding: 0 25px 35px;
@@ -135,38 +168,14 @@ body {
         margin-top: 60px;
         font-size: 1.8rem;
     }
-}
 
-.edit-btn {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 20px;
-    background-color: white;
-    color: var(--primary);
-    border: 1.5px solid var(--primary);
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.edit-btn:hover {
-    background-color: var(--primary);
-    color: white;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
-    transform: translateY(-1px);
-}
-
-@media (max-width: 768px) {
-    .edit-btn {
+    .profile-actions {
         top: 20px;
         right: 25px;
+        gap: 8px;
+    }
+
+    .edit-btn {
         padding: 6px 14px;
         font-size: 0.8rem;
     }
