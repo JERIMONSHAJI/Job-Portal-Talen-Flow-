@@ -82,4 +82,4 @@ The application implements a strict 3-tier permission model to ensure data secur
 
 ## 👤 Author
 **Jerimon Shaji**
-*BCA Graduate | Python Django Developer**
+*BCA Graduate | Python Django Developer*
